@@ -17,6 +17,11 @@ const Form = () => {
         await fetch("/api/list", {
           method: "POST",
           body: JSON.stringify(formProps),
+          cache: "no-cache",
+        });
+
+        await fetch("/api/revalidate?tag=list", {
+          cache: "no-cache",
         });
 
         startTransition(() => router.refresh());
