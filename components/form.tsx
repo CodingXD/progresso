@@ -1,25 +1,40 @@
 "use client";
 
-const saveForm = async (data: FormData) => {
-  "use server";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
-  console.log(data);
-};
 const Form = () => {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   return (
-    <form action={saveForm} className="border ring-2 p-4">
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const formProps = Object.fromEntries(formData);
+
+        await fetch("/api/list", {
+          method: "POST",
+          body: JSON.stringify(formProps),
+        });
+
+        startTransition(() => router.refresh());
+      }}
+      className="border ring-2 p-4"
+    >
       <div className="sm:col-span-2">
         <label
-          htmlFor="company"
+          htmlFor="item"
           className="block text-sm font-semibold leading-6 text-gray-900"
         >
-          Company
+          Item
         </label>
         <div className="mt-2.5">
           <input
             type="text"
-            name="company"
-            id="company"
+            name="item"
+            id="item"
             autoComplete="organization"
             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
