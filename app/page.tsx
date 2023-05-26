@@ -1,6 +1,8 @@
 import { addItem } from "@/database";
 import { revalidateTag } from "next/cache";
 
+export const runtime = "edge";
+
 export default async function Home() {
   const res = await fetch(`${process.env.API_URL}/api/list`, {
     next: { tags: ["list"] },
