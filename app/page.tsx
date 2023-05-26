@@ -4,7 +4,7 @@ import { revalidateTag } from "next/cache";
 export const runtime = "edge";
 
 export default async function Home() {
-  const res = await fetch(`${process.env.API_URL}/api/list`, {
+  const res = await fetch(`${process.env.CF_PAGES_URL}/api/list`, {
     next: { tags: ["list"] },
   });
   const items = (await res.json()) as string[];
