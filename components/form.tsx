@@ -1,5 +1,6 @@
 "use client";
 
+import { fetcher } from "@/utils/fetcher";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -14,15 +15,7 @@ const Form = () => {
         const formData = new FormData(e.currentTarget);
         const formProps = Object.fromEntries(formData);
 
-        await fetch("/api/list", {
-          method: "POST",
-          body: JSON.stringify(formProps),
-          cache: "no-cache",
-        });
-
-        await fetch("/api/revalidate?tag=list", {
-          cache: "no-cache",
-        });
+        await fetcher.post("/list", formProps);
 
         startTransition(() => router.refresh());
       }}

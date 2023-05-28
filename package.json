@@ -6,13 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "drizzle-kit generate:sqlite --schema=schema/schema.ts",
+    "up": "drizzle-kit up:sqlite --schema=schema/schema.ts"
   },
   "dependencies": {
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "drizzle-kit": "^0.18.1",
+    "drizzle-orm": "^0.26.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",
@@ -25,6 +30,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.0.1",
+    "@cloudflare/workers-types": "^4.20230518.0",
     "@tailwindcss/forms": "^0.5.3"
   }
 }
