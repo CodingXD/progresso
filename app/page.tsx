@@ -1,5 +1,6 @@
 import Form from "@/components/form";
 import { fetcher } from "@/utils/fetcher";
+import Image from 'next/image';
 
 export default async function Page() {
   const { data } = await fetcher.get<
@@ -13,6 +14,7 @@ export default async function Page() {
   return (
     <main className="flex min-h-screen justify-center space-x-4 items-center">
       <Form />
+      <Image src="/vercel.svg" height={200} width={200} alt="vercel" />
       <div className="border ring-2 p-4">
         <ul role="list" className="divide-y divide-gray-100">
           {data.map((item) => (

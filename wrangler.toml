@@ -1,4 +1,0 @@
-[[d1_databases]]
-binding = "DB" # i.e. available in your Worker on env.DB
-database_name = "progresso"
-database_id = "447fb61d-3e33-4491-8663-48a1dc510222"
